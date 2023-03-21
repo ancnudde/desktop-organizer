@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <script src="organizer.js"></script>
+    <script src="components/todo_list.js"></script>
+    <link rel="stylesheet" href="css/organizer.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <title>Organizer</title>
+</head>
+
+<body>
+    <div class="menu-pane">
+        <div class="menu-button">
+            <div class="gg-list"></div>
+            <p>ToDo</p>
+        </div>
+        <div class="menu-button">
+            <div class="gg-website"></div>
+            <p>Link</p>
+        </div>
+        <div class="menu-button">
+            <div class="gg-calendar-dates"></div>
+            <p>Calendar</p>
+        </div>
+        <div class="menu-button"></div>
+    </div>
+    <div class="main-section">
+        <div class="header-pane">
+            <h1>Organizer</h1>
+        </div>
+        <div class="main-pane">
+            <ul>
+                <todo-list>
+                </todo-list>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

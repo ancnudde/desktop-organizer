@@ -1,0 +1,109 @@
+.gg-list {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 3px
+}
+
+.gg-list::after,
+.gg-list::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: currentColor;
+    top: 3px;
+    left: 3px;
+    box-shadow:
+        0 4px 0,
+        0 8px 0
+}
+
+.gg-list::after {
+    border-radius: 3px;
+    width: 8px;
+    left: 7px
+}
+
+/*Link*/
+
+.gg-website {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 18px;
+    border: 2px solid;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0
+}
+
+.gg-website::after,
+.gg-website::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 6px;
+    top: 2px
+}
+
+.gg-website::before {
+    background: currentColor;
+    left: 2px;
+    box-shadow: 0 4px 0, 0 8px 0;
+    border-radius: 3px;
+    height: 2px
+}
+
+.gg-website::after {
+    height: 10px;
+    border: 2px solid;
+    right: 2px;
+    border-radius: 1px
+}
+
+/* Calendar */
+.gg-calendar-dates {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 18px;
+    height: 18px;
+    border: 2px solid;
+    border-radius: 3px
+}
+
+.gg-calendar-dates::after,
+.gg-calendar-dates::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 3px;
+    height: 2px;
+    left: 2px
+}
+
+.gg-calendar-dates::before {
+    background: currentColor;
+    width: 2px;
+    box-shadow:
+        4px 0 0, 8px 0 0, 0 4px 0,
+        4px 4px 0, 8px 4px 0;
+    top: 6px
+}
+
+.gg-calendar-dates::after {
+    width: 10px;
+    top: -4px;
+    box-shadow: 0 6px 0 0
+}

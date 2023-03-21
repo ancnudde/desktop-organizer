@@ -1,0 +1,129 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.menu-pane {
+    width: 13%;
+    min-width: 100px;
+    max-width: 110px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.menu-button {
+    margin-left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    padding: 12px 5px 12px 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu-button:hover {
+    background-color: rgba(50, 80, 255, 0.4);
+    cursor: pointer;
+}
+
+.menu-button:active {
+    transform: scale(98%);
+}
+
+.main-section {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-pane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+}
+
+.main-pane {
+    width: 100%;
+    height: 85%;
+}
+
+todo-list {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: flex-start;
+}
+
+.todo-list__title {
+    max-width: 300px;
+    max-height: 40px;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.todo-list__title:hover {
+    cursor: pointer;
+}
+
+todo-item {
+    padding: 10px;
+}
+
+.todo-item {
+    resize: none;
+    min-width: 100px;
+    height: 20px;
+    text-align: start;
+    overflow: hidden;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.todo-item--written {
+    width: auto;
+    height: auto;
+    max-width: 290px;
+    text-align: justify;
+    word-wrap: break-word;
+    border: none;
+    position: relative;
+    overflow-x: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.todo-item--written:hover {
+    cursor: pointer;
+}
+
+.todo-item--bullet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+    margin-top: 7px;
+}
+
+.todo-item--text {
+    max-width: 270px;
+}
