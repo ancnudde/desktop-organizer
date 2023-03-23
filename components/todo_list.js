@@ -14,7 +14,7 @@ const CheckedToDoItem = Object.freeze({
 })
 
 /*
-Todo list containing items. 
+Todo list containing items. Can add new items by clicking button.
 */
 
 class ToDoList extends HTMLElement {
@@ -25,16 +25,12 @@ class ToDoList extends HTMLElement {
         this.template = document.createElement("template");
     }
 
-    static get observedAttributes() {
-        return ["state"];
-    }
 
     addNewItem() {
         this.appendChild(new ToDoItem());
     }
 
     connectedCallback() {
-        this.setAttribute("state", ToDoState.Selected);
         this.render();
         this.appendChild(this.content);
         this.getElementsByClassName("todo-header__add-button")[0]
