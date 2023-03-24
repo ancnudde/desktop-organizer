@@ -15,5 +15,8 @@
   "devDependencies": {
     "electron": "^23.1.4",
     "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "sqlite-electron": "^2.2.5"
   }
 }

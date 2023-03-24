@@ -69,12 +69,20 @@ class ToDoItem extends HTMLElement {
         this.boundOnEnterKeyDown = this.onEnterKeyDown.bind(this);
         this.boundSetState = this.toggleWriting.bind(this);
         this.boundToggleChecked = this.toggleChecked.bind(this);
+        this.boundRemoveThis = this.removeThis.bind(this);
     }
 
     static get observedAttributes() {
         return ["state", "checked"];
     }
 
+    /*
+    Renders differentially depending on state;
+      -Writting: returns a text input
+      - Written - Unchecked: returns a bullet point, a text and a checkbox
+      - Written - Checked: returns a bullet point, a line-trough text and 
+            a checked checkbox
+    */
     render() {
         let templateDefinition =
             this.getAttribute("state") === ToDoItemState.Writing
@@ -98,6 +106,7 @@ class ToDoItem extends HTMLElement {
                    </div>
                    <div class='todo-item--checkbox todo-item--checkbox--checked'>
                </div>` ;
+        templateDefinition += `<button class='todo-item__remove-button'></button>`
         this.template.innerHTML = templateDefinition;
         this.content.append(this.template.content.cloneNode(true));
     }
@@ -114,17 +123,28 @@ class ToDoItem extends HTMLElement {
             this.getElementsByClassName("todo-item--checkbox")[0]
                 .addEventListener('click', this.boundToggleChecked)
         }
+        this.getElementsByClassName("todo-item__remove-button")[0]
+            .addEventListener('click', this.boundRemoveThis)
     }
 
     connectedCallback() {
         this.setAttribute("state", ToDoItemState.Writing);
-        console.log("State")
         this.setAttribute("checked", CheckedToDoItem.Unchecked);
-        console.log("Check")
+    }
+
+    disconnectedCallback() {
+        if (this.getAttribute("state") === ToDoItemState.Writing) {
+            this.getElementsByClassName("todo-item")[0]
+                .removeEventListener("keyup", this.boundOnEnterKeyDown);
+        } else {
+            this.getElementsByClassName("todo-item--text")[0]
+                .removeEventListener("click", this.boundSetState);
+            this.getElementsByClassName("todo-item--checkbox")[0]
+                .removeEventListener('click', this.boundToggleChecked)
+        }
     }
 
     attributeChangedCallback() {
-        console.log(this.constructor.observedAttributes)
         this.innerHTML = "";
         this.rerender();
     }
@@ -142,7 +162,6 @@ class ToDoItem extends HTMLElement {
             this.getAttribute("checked") === CheckedToDoItem.Checked
                 ? CheckedToDoItem.Unchecked
                 : CheckedToDoItem.Checked)
-        console.log(this.getAttribute('checked'))
     }
 
     onEnterKeyDown(event) {
@@ -152,8 +171,18 @@ class ToDoItem extends HTMLElement {
             this.writtenText = this.getElementsByTagName("input")[0].value;
         }
     }
+
+    removeThis() {
+        this.parentNode.removeChild(this);
+    }
 }
 
+
+/*
+Todo title of a todo list.
+
+Extends @ToDoItem, differs by rendering and associated callbacks.
+*/
 class ToDoTitle extends ToDoItem {
     constructor() {
         super();
@@ -166,14 +195,22 @@ class ToDoTitle extends ToDoItem {
         this.setAttribute("state", ToDoItemState.Written);
     }
 
+    disconnectedCallback() {
+        if (this.getAttribute("state") === ToDoItemState.Writing) {
+            this.removeEventListener('keyup', this.boundOnEnterKeyDown);
+        } else {
+            this.removeEventListener('click', this.boundSetState);
+        }
+    }
+
     render() {
         let templateDefinition =
             this.getAttribute("state") === ToDoItemState.Written
                 ? `
-          <div class='todo-list__title'>${this.writtenText}</div>
+          <div class='todo-title'>${this.writtenText}</div>
         `
                 : `
-          <input type='text' class='todo-list__title' 
+          <input type='text' class='todo-title' 
                  value='${this.writtenText}'>
           </input>
         `;

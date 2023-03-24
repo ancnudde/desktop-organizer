@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron')
+const sqlite = require('sqlite-electron')
+
 try {
     require('electron-reloader')(module)
 } catch (_) { }
@@ -31,3 +33,4 @@ app.on('window-all-closed', () => {
         app.quit()
     }
 })
+

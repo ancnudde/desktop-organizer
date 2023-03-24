@@ -78,10 +78,11 @@ todo-list {
     justify-content: space-between;
 }
 
-.todo-list__title {
+.todo-title {
     max-width: 230px;
     max-height: 40px;
     font-size: 17px;
+    font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -92,10 +93,23 @@ todo-list {
 .todo-header__add-button {
     width: 20px;
     height: 20px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.todo-header__add-button:hover,
+.todo-item__remove-button:hover {
+    cursor: pointer;
+}
+
+.todo-header__add-button:active,
+.todo-item__remove-button:active {
+    transform: scale(98%);
 }
 
 todo-item {
-    padding: 5px 10px;
+    padding: 5px 10px 0 10px;
 }
 
 .todo-item {
@@ -115,10 +129,9 @@ todo-item {
     word-wrap: break-word;
     border: none;
     position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: 1fr 18fr 1fr;
+    grid-template-rows: 10px 1fr;
 }
 
 .todo-item--bullet {
@@ -127,10 +140,14 @@ todo-item {
     border-radius: 50%;
     background-color: black;
     margin-top: 7px;
+    margin-left: 2px;
 }
 
 .todo-item--text {
     max-width: 200px;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 .todo-item--text:hover {
@@ -157,9 +174,28 @@ todo-item {
 .todo-item--checkbox--checked::after {
     content: 'X';
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     position: absolute;
     top: -4px;
     left: -2px;
+}
+
+.todo-item__remove-button {
+    width: 15px;
+    height: 15px;
+    margin-top: 5px;
+    margin-left: auto;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+.todo-item__remove-button::after {
+    content: 'X';
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    top: 0%;
+    left: 0%;
 }
